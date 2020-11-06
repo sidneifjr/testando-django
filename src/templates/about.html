@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>About world</h2>
+<p>Template testing!</p>
+
+{{ my_html|striptags }}
+{{ my_html|safe }}
+
+<!-- Também existe o filter 'title' -->
+<h3>{{ title|capfirst|upper }}</h3>
+
+<!-- Context variable: what got passed to our context (in urls.py) and what can we use. -->
+<p>
+    {{ my_number }}, {{ my_list }}
+</p>
+
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+
+<ul>
+{% for abc in my_list %}
+    {% if abc == 312 %}
+        <li> if - {{ forloop.counter }}, {{ abc }}</li>
+
+    {% elif abc == "Abc" %} <!-- equivalente a else if -->
+        <li> elif - this is not the network</li>        
+
+    {% else %}
+        <li> else - {{ forloop.counter }}, {{ abc }}</li>
+
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% endblock content %}
